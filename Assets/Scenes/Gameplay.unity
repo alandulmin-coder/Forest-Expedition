@@ -843,6 +843,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1143452515366651050, guid: a66c7933f91ac644797b9d3a4c78e550, type: 3}
+      propertyPath: m_TerrainData
+      value: 
+      objectReference: {fileID: 15600000, guid: 1d25257a976e5ed4dbe98d261998bb59, type: 2}
     - target: {fileID: 6242489435602876255, guid: a66c7933f91ac644797b9d3a4c78e550, type: 3}
       propertyPath: m_LocalPosition.x
       value: 64
@@ -882,6 +886,14 @@ PrefabInstance:
     - target: {fileID: 6242489435602876255, guid: a66c7933f91ac644797b9d3a4c78e550, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546393206326530236, guid: a66c7933f91ac644797b9d3a4c78e550, type: 3}
+      propertyPath: m_MaterialTemplate
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 2476a2d151e824143af40dce1fc93a12, type: 3}
+    - target: {fileID: 6546393206326530236, guid: a66c7933f91ac644797b9d3a4c78e550, type: 3}
+      propertyPath: m_ShadowCastingMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8975039811394133309, guid: a66c7933f91ac644797b9d3a4c78e550, type: 3}
       propertyPath: m_Name
