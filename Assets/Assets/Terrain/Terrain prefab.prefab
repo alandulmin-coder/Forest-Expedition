@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6660881354323767972}
   - component: {fileID: 1501801586089643363}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Terrain prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
