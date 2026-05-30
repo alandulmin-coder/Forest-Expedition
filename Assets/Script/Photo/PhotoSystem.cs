@@ -1,19 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class PhotoSystem : MonoBehaviour
 {
+    [Header("Camera")]
     public Camera playerCamera;
 
     [Header("Photo Settings")]
     public float normalFOV = 75f;
     public float photoFOV = 40f;
+    public float photoDistance = 10f;
 
-    private bool isPhotoMode;
+    [Header("Effects")]
+    public PhotoFade photoFade;
+    public CameraFlash cameraFlash;
+
+    private bool isPhotoMode = false;
+    private bool isTransitioning = false;
 
     void Update()
     {
         // Toggle Photo Mode
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !isTransitioning)
         {
             TogglePhotoMode();
         }
@@ -27,24 +35,49 @@ public class PhotoSystem : MonoBehaviour
 
     void TogglePhotoMode()
     {
-        isPhotoMode = !isPhotoMode;
-
-        if (isPhotoMode)
+        if (!isPhotoMode)
         {
-            playerCamera.fieldOfView = photoFOV;
-
-            Debug.Log("Entered Photo Mode");
+            StartCoroutine(EnterPhotoMode());
         }
         else
         {
-            playerCamera.fieldOfView = normalFOV;
-
-            Debug.Log("Exited Photo Mode");
+            StartCoroutine(ExitPhotoMode());
         }
+    }
+
+    IEnumerator EnterPhotoMode()
+    {
+        isTransitioning = true;
+
+        yield return StartCoroutine(photoFade.FadeIn());
+
+        playerCamera.fieldOfView = photoFOV;
+        isPhotoMode = true;
+
+        yield return StartCoroutine(photoFade.FadeOut());
+
+        isTransitioning = false;
+    }
+
+    IEnumerator ExitPhotoMode()
+    {
+        isTransitioning = true;
+
+        yield return StartCoroutine(photoFade.FadeIn());
+
+        playerCamera.fieldOfView = normalFOV;
+        isPhotoMode = false;
+
+        yield return StartCoroutine(photoFade.FadeOut());
+
+        isTransitioning = false;
     }
 
     void TakePhoto()
     {
+        // Flash effect
+        StartCoroutine(cameraFlash.Flash());
+
         Ray ray = new Ray(
             playerCamera.transform.position,
             playerCamera.transform.forward
@@ -52,21 +85,29 @@ public class PhotoSystem : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, photoDistance))
         {
             PhotoTarget target =
                 hit.collider.GetComponent<PhotoTarget>();
 
             if (target != null)
             {
-                Debug.Log(
-                    "Photographed: " + target.targetName
-                );
+                if (!target.hasBeenPhotographed)
+                {
+                    target.hasBeenPhotographed = true;
+                }
+                Debug.Log("Photographed: " + target.targetName);
+
+                // Nanti objective bisa ditambahkan di sini
             }
             else
             {
                 Debug.Log("Photo Taken");
             }
+        }
+        else
+        {
+            Debug.Log("Photo Taken");
         }
     }
 }
