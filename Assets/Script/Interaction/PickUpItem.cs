@@ -4,6 +4,10 @@ public class PickupItem : MonoBehaviour, IInteractable
 {
     public string itemName;
 
+    public string objectiveID;
+
+    public ObjectiveManager objectiveManager;
+
     private PhotoTarget photoTarget;
 
     private void Awake()
@@ -17,9 +21,10 @@ public class PickupItem : MonoBehaviour, IInteractable
             !photoTarget.hasBeenPhotographed)
         {
             Debug.Log("Take a photo first!");
-
             return;
         }
+
+        objectiveManager.CompleteObjective(objectiveID);
 
         Debug.Log("Picked up: " + itemName);
 
