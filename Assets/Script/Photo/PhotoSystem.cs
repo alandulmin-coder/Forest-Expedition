@@ -17,6 +17,7 @@ public class PhotoSystem : MonoBehaviour
 
     private bool isPhotoMode = false;
     private bool isTransitioning = false;
+    public GameObject photoModeUI;
 
     void Update()
     {
@@ -52,6 +53,9 @@ public class PhotoSystem : MonoBehaviour
         yield return StartCoroutine(photoFade.FadeIn());
 
         playerCamera.fieldOfView = photoFOV;
+        
+        photoModeUI.SetActive(true);
+        
         isPhotoMode = true;
 
         yield return StartCoroutine(photoFade.FadeOut());
@@ -66,6 +70,7 @@ public class PhotoSystem : MonoBehaviour
         yield return StartCoroutine(photoFade.FadeIn());
 
         playerCamera.fieldOfView = normalFOV;
+        photoModeUI.SetActive(false);
         isPhotoMode = false;
 
         yield return StartCoroutine(photoFade.FadeOut());

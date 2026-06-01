@@ -36,7 +36,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         if (photoTarget != null &&
             !photoTarget.hasBeenPhotographed)
         {
-            return "[Photo First]";
+            return "Photo First [Right Click to enter photo mode]";
         }
 
         return "[E] Pick Up " + itemName;
