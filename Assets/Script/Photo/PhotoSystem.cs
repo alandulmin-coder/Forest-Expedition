@@ -10,6 +10,7 @@ public class PhotoSystem : MonoBehaviour
     public float normalFOV = 75f;
     public float photoFOV = 40f;
     public float photoDistance = 10f;
+    public LayerMask photoLayer;
 
     [Header("Effects")]
     public PhotoFade photoFade;
@@ -90,7 +91,7 @@ public class PhotoSystem : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, photoDistance))
+        if (Physics.Raycast(ray, out hit, photoDistance, photoLayer))
         {
             PhotoTarget target =
                 hit.collider.GetComponent<PhotoTarget>();
