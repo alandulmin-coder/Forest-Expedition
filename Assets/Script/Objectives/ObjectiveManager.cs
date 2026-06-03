@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class ObjectiveManager : MonoBehaviour
     public bool meteorCollected;
 
     [Header("Win UI")]
-    public GameObject winPanel;
+    public GameObject winImage;
 
     public ObjectiveUI objectiveUI;
     public PlayerMovement playerMovement;
@@ -51,7 +52,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         Debug.Log("YOU WIN");
 
-        winPanel.SetActive(true);
+        winImage.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -61,5 +62,10 @@ public class ObjectiveManager : MonoBehaviour
         playerMovement.enabled = false;
         playerInteraction.enabled = false;
         photoSystem.enabled = false;
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
