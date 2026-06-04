@@ -9,12 +9,12 @@ public class MainMenuManager : MonoBehaviour
     public GameObject creditsPanel;
 
     // =========================
-    // START GAME
+    // START
     // =========================
 
     public void StartGame()
     {
-        SceneManager.LoadScene("TerrainBuild");
+        SceneManager.LoadScene("Gameplay");
     }
 
     // =========================
@@ -24,12 +24,14 @@ public class MainMenuManager : MonoBehaviour
     public void OpenSettings()
     {
         mainPanel.SetActive(false);
+
         settingsPanel.SetActive(true);
     }
 
     public void CloseSettings()
     {
         settingsPanel.SetActive(false);
+
         mainPanel.SetActive(true);
     }
 
@@ -40,12 +42,14 @@ public class MainMenuManager : MonoBehaviour
     public void OpenCredits()
     {
         mainPanel.SetActive(false);
+
         creditsPanel.SetActive(true);
     }
 
     public void CloseCredits()
     {
         creditsPanel.SetActive(false);
+
         mainPanel.SetActive(true);
     }
 
@@ -57,6 +61,6 @@ public class MainMenuManager : MonoBehaviour
     {
         Application.Quit();
 
-        Debug.Log("QUIT GAME");
+        Debug.Log("Quit Game");
     }
 }

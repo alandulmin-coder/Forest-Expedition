@@ -6,13 +6,17 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public string objectiveID;
 
-    public ObjectiveManager objectiveManager;
+    private GameManager gameManager;
 
     private PhotoTarget photoTarget;
 
-    private void Awake()
+    void Start()
     {
-        photoTarget = GetComponent<PhotoTarget>();
+        photoTarget =
+            GetComponent<PhotoTarget>();
+
+        gameManager =
+            FindObjectOfType<GameManager>();
     }
 
     public void Interact()
@@ -24,9 +28,13 @@ public class PickupItem : MonoBehaviour, IInteractable
             return;
         }
 
-        objectiveManager.CompleteObjective(objectiveID);
+        gameManager
+            .CompleteObjective(objectiveID);
 
-        Debug.Log("Picked up: " + itemName);
+        Debug.Log(
+            "Picked up: " +
+            itemName
+        );
 
         Destroy(gameObject);
     }
@@ -36,9 +44,11 @@ public class PickupItem : MonoBehaviour, IInteractable
         if (photoTarget != null &&
             !photoTarget.hasBeenPhotographed)
         {
-            return "Photo First [Right Click to enter photo mode]";
+            return
+                "Photo First [Right Click]";
         }
 
-        return "[E] Pick Up " + itemName;
+        return
+            "[E] Pick Up " + itemName;
     }
 }

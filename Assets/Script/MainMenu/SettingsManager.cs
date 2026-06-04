@@ -11,22 +11,61 @@ public class SettingsManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource bgmSource;
 
+    [Header("Player")]
     public PlayerMovement playerMovement;
 
     void Start()
     {
-        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+        // Load saved settings
+        bgmSlider.value =
+            PlayerPrefs.GetFloat("BGM", 1f);
 
-        sensitivitySlider.onValueChanged.AddListener(SetSensitivity);
+        sfxSlider.value =
+            PlayerPrefs.GetFloat("SFX", 1f);
+
+        sensitivitySlider.value =
+            PlayerPrefs.GetFloat("Sensitivity", 2f);
+
+        // Apply settings
+        SetBGMVolume(bgmSlider.value);
+        SetSensitivity(sensitivitySlider.value);
+
+        // Listener
+        bgmSlider.onValueChanged
+            .AddListener(SetBGMVolume);
+
+        sensitivitySlider.onValueChanged
+            .AddListener(SetSensitivity);
     }
+
+    // =========================
+    // BGM
+    // =========================
 
     public void SetBGMVolume(float volume)
     {
         bgmSource.volume = volume;
+
+        PlayerPrefs.SetFloat(
+            "BGM",
+            volume
+        );
     }
 
-    public void SetSensitivity(float sensitivity)
+    // =========================
+    // SENSITIVITY
+    // =========================
+
+    public void SetSensitivity(float value)
     {
-        playerMovement.lookSpeed = sensitivity;
+        if (playerMovement != null)
+        {
+            playerMovement.lookSpeed = value;
+        }
+
+        PlayerPrefs.SetFloat(
+            "Sensitivity",
+            value
+        );
     }
 }
