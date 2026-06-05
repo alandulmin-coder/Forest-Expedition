@@ -19,7 +19,14 @@ public class PhotoSystem : MonoBehaviour
     private bool isPhotoMode = false;
     private bool isTransitioning = false;
     public GameObject photoModeUI;
+    private GameManager gameManager;
 
+    void Start()
+    {
+        gameManager =
+            FindObjectOfType<GameManager>();
+    }
+    
     void Update()
     {
         // Toggle Photo Mode
@@ -83,6 +90,8 @@ public class PhotoSystem : MonoBehaviour
     {
         // Flash effect
         StartCoroutine(cameraFlash.Flash());
+
+        gameManager.PlaySFX(gameManager.photoSFX);
 
         Ray ray = new Ray(
             playerCamera.transform.position,

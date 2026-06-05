@@ -20,6 +20,14 @@ public class PlayerMovement : MonoBehaviour
     private float rotationX = 0;
     private CharacterController characterController;
 
+    [Header("Footstep")]
+    public AudioSource footstepSource;
+    public AudioClip walkSFX;
+    public AudioClip runSFX;
+    public float walkStepRate = 0.5f;
+    public float runStepRate = 0.3f;
+    private float stepTimer;
+
     private bool canMove = true;
 
     void Start()
@@ -69,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+        HandleFootsteps(isRunning);
 
         if (canMove)
         {
@@ -76,6 +85,35 @@ public class PlayerMovement : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+    }
+    void HandleFootsteps(bool isRunning)
+    {
+        if (!characterController.isGrounded)
+            return;
+
+        float moveAmount =
+            Mathf.Abs(Input.GetAxis("Horizontal")) +
+            Mathf.Abs(Input.GetAxis("Vertical"));
+
+        if (moveAmount > 0.1f)
+        {
+            stepTimer -= Time.deltaTime;
+
+            if (stepTimer <= 0f)
+            {
+                footstepSource.clip =
+                    isRunning
+                    ? runSFX
+                    : walkSFX;
+
+                footstepSource.Play();
+
+                stepTimer =
+                    isRunning
+                    ? runStepRate
+                    : walkStepRate;
+            }
         }
     }
 }
