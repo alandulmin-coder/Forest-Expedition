@@ -13,9 +13,6 @@
             "m_Id": "77da4f62b7fa4639a7a5930995402d29"
         },
         {
-            "m_Id": "70e5bacbe3884074969dadd02b9b65c3"
-        },
-        {
             "m_Id": "d7de44e5d82a40dc9844c11c039ef82b"
         },
         {
@@ -1726,9 +1723,6 @@
             "m_Id": "77da4f62b7fa4639a7a5930995402d29"
         },
         {
-            "m_Id": "70e5bacbe3884074969dadd02b9b65c3"
-        },
-        {
             "m_Id": "d7de44e5d82a40dc9844c11c039ef82b"
         },
         {
@@ -2148,42 +2142,6 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.NormalTS"
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
-    "m_ObjectId": "70e5bacbe3884074969dadd02b9b65c3",
-    "m_Guid": {
-        "m_GuidSerialized": "577d94f4-7e53-4d4d-8c43-d307606d61af"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "WaterTexture",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "WaterTexture",
-    "m_DefaultReferenceName": "_WaterTexture",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": {
-        "m_SerializedTexture": "",
-        "m_Guid": ""
-    },
-    "isMainTexture": false,
-    "useTilingAndOffset": false,
-    "useTexelSize": true,
-    "m_Modifiable": true,
-    "m_DefaultType": 0
 }
 
 {
