@@ -36,6 +36,8 @@ public class PickupItem : MonoBehaviour, IInteractable
             itemName
         );
 
+        gameManager.PlaySFX(gameManager.pickupSFX);
+
         Destroy(gameObject);
     }
 
