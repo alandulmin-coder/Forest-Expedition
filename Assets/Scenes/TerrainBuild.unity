@@ -1820,6 +1820,66 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &722381273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722381275}
+  - component: {fileID: 722381274}
+  m_Layer: 0
+  m_Name: GrassSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &722381274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722381273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6306e77ac3b187a468032c134d33ac75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassManager
+  grasslarge: {fileID: 3900010561435710306, guid: f2ee26851c6eb0141b1fba1fb110788b, type: 3}
+  grassmedium: {fileID: 5302117361943501235, guid: 57dca3a412e839f419bf631e3401efc8, type: 3}
+  grasssmall: {fileID: 8605515691580900795, guid: 4634c3ac829978749a38459c248c40b8, type: 3}
+  minX: 1712
+  maxX: 7762
+  minZ: -2402
+  maxZ: 3622
+  grassCount: 5000
+  minHeight: -50
+  maxHeight: 700
+  maxSlope: 35
+  minScale: 0.9
+  maxScale: 1.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!4 &722381275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722381273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6338.4277, y: -20.94167, z: -402.3763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742503904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,66 +2782,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1009439627
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1009439628}
-  - component: {fileID: 1009439629}
-  m_Layer: 0
-  m_Name: GrassManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1009439628
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009439627}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1009439629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009439627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6306e77ac3b187a468032c134d33ac75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrassManager
-  grasslarge: {fileID: 3900010561435710306, guid: f2ee26851c6eb0141b1fba1fb110788b, type: 3}
-  grassmedium: {fileID: 5302117361943501235, guid: 57dca3a412e839f419bf631e3401efc8, type: 3}
-  grasssmall: {fileID: 8605515691580900795, guid: 4634c3ac829978749a38459c248c40b8, type: 3}
-  minX: 1712
-  maxX: 7762
-  minZ: -2402
-  maxZ: 3622
-  grassCount: 1000
-  minHeight: -50
-  maxHeight: 700
-  maxSlope: 35
-  minScale: 0.9
-  maxScale: 1.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &1044257028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5978,5 +5978,5 @@ SceneRoots:
   - {fileID: 525590419}
   - {fileID: 583617008}
   - {fileID: 1444729948}
-  - {fileID: 1009439628}
   - {fileID: 890496715}
+  - {fileID: 722381275}
