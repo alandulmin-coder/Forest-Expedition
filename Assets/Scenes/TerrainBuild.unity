@@ -2948,9 +2948,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  chunkSize: 100
+  chunkSize: 70
   viewDistance: 2
-  grassPerChunk: 100
+  grassPerChunk: 5000
   minHeight: -50
   maxHeight: 700
   maxSlope: 35
