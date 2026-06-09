@@ -869,7 +869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
   itemName: Fosil
   objectiveID: Fossil
-  objectiveManager: {fileID: 813631072}
+  objectiveManager: {fileID: 0}
 --- !u!65 &365777277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   tabletCollected: 0
   fossilCollected: 0
   meteorCollected: 0
-  winPanel: {fileID: 2088231882}
+  winPanel: {fileID: 0}
   objectiveUI: {fileID: 1572381484}
   playerMovement: {fileID: 1194130354}
   playerInteraction: {fileID: 1194130353}
@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
   itemName: Meteorit
   objectiveID: Meteor
-  objectiveManager: {fileID: 813631072}
+  objectiveManager: {fileID: 0}
 --- !u!65 &1044257033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2947,15 +2947,15 @@ MonoBehaviour:
   grasslarge: {fileID: 3900010561435710306, guid: f2ee26851c6eb0141b1fba1fb110788b, type: 3}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
-  chunkSize: 75
+    m_Bits: 0
+  chunkSize: 100
   viewDistance: 2
-  grassPerChunk: 5000
+  grassPerChunk: 100
   minHeight: -50
   maxHeight: 700
   maxSlope: 35
   minScale: 0.9
-  maxScale: 1.1
+  maxScale: 1
 --- !u!1 &1079797549
 GameObject:
   m_ObjectHideFlags: 0
@@ -4263,7 +4263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
   itemName: Prasasti
   objectiveID: Tablet
-  objectiveManager: {fileID: 813631072}
+  objectiveManager: {fileID: 0}
 --- !u!65 &1456515362
 BoxCollider:
   m_ObjectHideFlags: 0
