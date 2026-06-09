@@ -3257,7 +3257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3173631541833909145, guid: 9c11c879da37a664f81796c09bfc1271, type: 3}
       propertyPath: m_Name
-      value: ProtoTerrain2 (1)
+      value: ProtoTerrain2
       objectReference: {fileID: 0}
     - target: {fileID: 4048807256124734492, guid: 9c11c879da37a664f81796c09bfc1271, type: 3}
       propertyPath: player
