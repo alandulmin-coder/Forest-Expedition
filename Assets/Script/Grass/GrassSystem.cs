@@ -27,7 +27,7 @@ public class GrassManager : MonoBehaviour
 
     [Header("Scale Variation")]
     public float minScale = 0.9f;
-    public float maxScale = 1.1f;
+    public float maxScale = 1.0f;
 
     private Mesh smallMesh;
     private Mesh mediumMesh;
@@ -37,13 +37,22 @@ public class GrassManager : MonoBehaviour
     private Material mediumMaterial;
     private Material largeMaterial;
 
+    private Vector3 smallBaseScale;
+    private Vector3 mediumBaseScale;
+    private Vector3 largeBaseScale;
+
     private Dictionary<Vector2Int, GrassChunk> activeChunks =
+        new Dictionary<Vector2Int, GrassChunk>();
+
+    private Dictionary<Vector2Int, GrassChunk> chunkCache =
         new Dictionary<Vector2Int, GrassChunk>();
 
     private Vector2Int currentPlayerChunk;
 
     void Start()
     {
+        activeChunks.Clear();
+
         smallMesh = grasssmall.GetComponent<MeshFilter>().sharedMesh;
         mediumMesh = grassmedium.GetComponent<MeshFilter>().sharedMesh;
         largeMesh = grasslarge.GetComponent<MeshFilter>().sharedMesh;
@@ -52,7 +61,17 @@ public class GrassManager : MonoBehaviour
         mediumMaterial = grassmedium.GetComponent<MeshRenderer>().sharedMaterial;
         largeMaterial = grasslarge.GetComponent<MeshRenderer>().sharedMaterial;
 
-        UpdateChunks(true);
+        smallBaseScale = grasssmall.transform.localScale;
+        mediumBaseScale = grassmedium.transform.localScale;
+        largeBaseScale = grasslarge.transform.localScale;
+
+        Debug.Log("Small Scale = " + smallBaseScale);
+        Debug.Log("Medium Scale = " + mediumBaseScale);
+        Debug.Log("Large Scale = " + largeBaseScale);
+
+        Debug.Log("Cached Chunks: " + chunkCache.Count);
+
+        UpdateChunks();
     }
 
     void Update()
@@ -61,7 +80,7 @@ public class GrassManager : MonoBehaviour
 
         if (newChunk != currentPlayerChunk)
         {
-            UpdateChunks(false);
+            UpdateChunks();
         }
 
         RenderGrass();
@@ -75,7 +94,7 @@ public class GrassManager : MonoBehaviour
         );
     }
 
-    void UpdateChunks(bool force)
+    void UpdateChunks()
     {
         currentPlayerChunk = GetPlayerChunk();
 
@@ -88,7 +107,17 @@ public class GrassManager : MonoBehaviour
                 Vector2Int coord =
                     currentPlayerChunk + new Vector2Int(x, z);
 
-                GrassChunk chunk = GenerateChunk(coord);
+                GrassChunk chunk;
+
+                if (chunkCache.TryGetValue(coord, out chunk))
+                {
+                    // Ambil dari cache
+                }
+                else
+                {
+                    chunk = GenerateChunk(coord);
+                    chunkCache.Add(coord, chunk);
+                }
 
                 activeChunks.Add(coord, chunk);
             }
@@ -128,27 +157,38 @@ public class GrassManager : MonoBehaviour
 
             float roll = Random.Range(0f, 100f);
 
-            Mesh selectedMesh;
             List<Matrix4x4> targetList;
 
             if (roll < 70f)
             {
-                selectedMesh = smallMesh;
                 targetList = chunk.smallMatrices;
             }
             else if (roll < 90f)
             {
-                selectedMesh = mediumMesh;
                 targetList = chunk.mediumMatrices;
             }
             else
             {
-                selectedMesh = largeMesh;
                 targetList = chunk.largeMatrices;
             }
 
-            float scale =
-                Random.Range(minScale, maxScale);
+            float randomScale =
+    Random.Range(minScale, maxScale);
+
+            Vector3 baseScale;
+
+            if (roll < 70f)
+            {
+                baseScale = smallBaseScale;
+            }
+            else if (roll < 90f)
+            {
+                baseScale = mediumBaseScale;
+            }
+            else
+            {
+                baseScale = largeBaseScale;
+            }
 
             Matrix4x4 matrix =
                 Matrix4x4.TRS(
@@ -157,7 +197,7 @@ public class GrassManager : MonoBehaviour
                         0f,
                         Random.Range(0f, 360f),
                         0f),
-                    Vector3.one * scale
+                    baseScale * randomScale
                 );
 
             targetList.Add(matrix);
