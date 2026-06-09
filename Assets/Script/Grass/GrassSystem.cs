@@ -5,6 +5,7 @@ public class GrassManager : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
+    public Transform lakePlane;
 
     public GameObject grasssmall;
     public GameObject grassmedium;
@@ -12,6 +13,7 @@ public class GrassManager : MonoBehaviour
 
     [Header("Terrain")]
     public LayerMask groundLayer;
+    public LayerMask waterLayer;
 
     [Header("Chunk Settings")]
     public int chunkSize = 100;
@@ -24,6 +26,7 @@ public class GrassManager : MonoBehaviour
     public float maxHeight = 700f;
 
     public float maxSlope = 35f;
+    public float waterHeight = -1.4f;
 
     [Header("Scale Variation")]
     public float minScale = 0.9f;
@@ -51,6 +54,7 @@ public class GrassManager : MonoBehaviour
 
     void Start()
     {
+        chunkCache.Clear();
         activeChunks.Clear();
 
         smallMesh = grasssmall.GetComponent<MeshFilter>().sharedMesh;
@@ -92,6 +96,18 @@ public class GrassManager : MonoBehaviour
             Mathf.FloorToInt(player.position.x / chunkSize),
             Mathf.FloorToInt(player.position.z / chunkSize)
         );
+    }
+
+    bool IsInsideLake(Vector3 worldPos)
+    {
+        if (lakePlane == null)
+            return false;
+
+        Vector3 localPos =
+            lakePlane.InverseTransformPoint(worldPos);
+
+        return Mathf.Abs(localPos.x) <= 5f &&
+               Mathf.Abs(localPos.z) <= 5f;
     }
 
     void UpdateChunks()
@@ -149,6 +165,11 @@ public class GrassManager : MonoBehaviour
                 hit.point.y > maxHeight)
                 continue;
 
+            if (IsInsideLake(hit.point) && hit.point.y < lakePlane.position.y)
+            {
+                continue;
+            }
+
             float slope =
                 Vector3.Angle(hit.normal, Vector3.up);
 
@@ -172,8 +193,7 @@ public class GrassManager : MonoBehaviour
                 targetList = chunk.largeMatrices;
             }
 
-            float randomScale =
-    Random.Range(minScale, maxScale);
+            float randomScale = Random.Range(minScale, maxScale);
 
             Vector3 baseScale;
 
