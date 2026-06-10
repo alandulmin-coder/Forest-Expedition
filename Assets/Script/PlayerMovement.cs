@@ -22,12 +22,22 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Footstep")]
     public AudioSource footstepSource;
-    public AudioClip walkSFX;
-    public AudioClip runSFX;
+
     public float walkStepRate = 0.5f;
     public float runStepRate = 0.3f;
-    private float stepTimer;
 
+    private float stepTimer;
+    
+    [Header("Grass")]
+    public AudioClip grassWalk;
+    public AudioClip grassRun;
+
+    [Header("Rock")]
+    public AudioClip rockWalk;
+    public AudioClip rockRun;
+
+
+    public string currentSurface = "Grass";
     private bool canMove = true;
 
     void Start()
@@ -87,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
+
     void HandleFootsteps(bool isRunning)
     {
         if (!characterController.isGrounded)
@@ -102,10 +113,35 @@ public class PlayerMovement : MonoBehaviour
 
             if (stepTimer <= 0f)
             {
-                footstepSource.clip =
-                    isRunning
-                    ? runSFX
-                    : walkSFX;
+                switch (currentSurface)
+                {
+                    case "Grass":
+
+                        footstepSource.clip =
+                            isRunning
+                            ? grassRun
+                            : grassWalk;
+
+                        break;
+
+                    case "Rock":
+
+                        footstepSource.clip =
+                            isRunning
+                            ? rockRun
+                            : rockWalk;
+
+                        break;
+
+                    default:
+
+                        footstepSource.clip =
+                            isRunning
+                            ? grassRun
+                            : grassWalk;
+
+                        break;
+                }
 
                 footstepSource.Play();
 
@@ -114,6 +150,23 @@ public class PlayerMovement : MonoBehaviour
                     ? runStepRate
                     : walkStepRate;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SurfaceArea area =
+            other.GetComponent<SurfaceArea>();
+
+        if (area != null)
+        {
+            currentSurface =
+                area.surfaceType;
+
+            Debug.Log(
+                "Current Surface: " +
+                currentSurface
+            );
         }
     }
 }
