@@ -26,7 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -115,11 +115,16 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FlowSpeed: 0.05
+    - _FoamThickness: 1
     - _FresnelPower: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _NoiseColorStrength: 0.15
+    - _NoiseScale: 3
+    - _NoiseSpeed: 0.03
+    - _NoiseStrength: 0.03
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -131,8 +136,8 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WaveHeight: 0.03
-    - _WaveSpeed: 0.05
+    - _WaveHeight: 0.02
+    - _WaveSpeed: 0.02
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -141,7 +146,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeepWaterColor: {r: 0.043137237, g: 0.22745097, b: 0.35686278, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 0.25490198, g: 0.7882353, b: 0.8470588, a: 1}
+    - _NoiseColor: {r: 0.7294118, g: 0.8392157, b: 0.84705883, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaterColor: {r: 0, g: 0.4820311, b: 1, a: 1}
   m_BuildTextureStacks: []
